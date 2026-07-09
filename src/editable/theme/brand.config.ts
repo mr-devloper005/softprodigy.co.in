@@ -5,6 +5,9 @@ import { getProductKind } from '@/design/factory/get-product-kind'
 const { recipe } = getFactoryState()
 const productKind = getProductKind(recipe)
 
+// Monochrome, editorial-studio palette (Vantis-inspired). The "accent" is
+// contrast reversal (black on off-white) rather than a saturated hue, so we
+// point primary at ink and keep surface bright.
 export const slot4BrandConfig = {
   siteName: siteIdentity.name,
   tagline: siteIdentity.tagline,
@@ -13,7 +16,7 @@ export const slot4BrandConfig = {
   productKind,
   ogImage: siteIdentity.ogImage,
   accents: {
-    primary: '#d32323',
+    primary: '#000000',
     surface: '#ffffff',
   },
 } as const

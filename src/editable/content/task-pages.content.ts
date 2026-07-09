@@ -9,59 +9,79 @@ export type TaskPageVoice = {
   chips: string[]
 }
 
+/*
+  Renamed display labels — the user-facing strings for every task. The
+  underlying task keys (`article`, `listing`, …) and route paths stay
+  unchanged; this is a display-label rename only.
+*/
+export const taskDisplayLabels: Record<TaskKey, { singular: string; plural: string }> = {
+  article: { singular: 'Story', plural: 'Stories & Guides' },
+  listing: { singular: 'Place', plural: 'Local Directory' },
+  classified: { singular: 'Notice', plural: 'Notice board' },
+  image: { singular: 'Frame', plural: 'Visual feed' },
+  sbm: { singular: 'Bookmark', plural: 'Saved shelf' },
+  pdf: { singular: 'Document', plural: 'Document library' },
+  profile: { singular: 'Profile', plural: 'Directory of people' },
+}
+
+export const taskDisplayLabel = (task: TaskKey, form: 'singular' | 'plural' = 'plural') =>
+  taskDisplayLabels[task]?.[form] || taskDisplayLabels.article[form]
+
 export const taskPageVoices = {
   article: {
-    eyebrow: 'Reading desk',
-    headline: 'Long-form articles with a calmer editorial rhythm.',
-    description: 'Use this page for essays, guides, explainers, and story-led posts. The layout should feel like a publication, not a directory.',
-    filterLabel: 'Choose article topic',
-    secondaryNote: 'Reading surfaces need space, hierarchy, and fewer distractions.',
+    eyebrow: 'Stories & Guides',
+    headline: 'Field notes, long-reads and guides worth the time.',
+    description:
+      'A quieter reading desk for essays, walkthroughs and reference pieces. Skim the shelf or settle in — the pacing is unhurried on purpose.',
+    filterLabel: 'Choose a topic',
+    secondaryNote: 'Reading surfaces need space, hierarchy and fewer distractions.',
     chips: ['Editorial pacing', 'Topic filters', 'Long-read friendly'],
   },
   classified: {
     eyebrow: 'Notice board',
-    headline: 'Fast-moving classifieds, offers, and time-sensitive posts.',
-    description: 'Classified content should feel quick to scan, practical, and action-oriented with less editorial decoration.',
-    filterLabel: 'Filter classified category',
-    secondaryNote: 'Prioritize urgency, short summaries, and direct browsing.',
+    headline: 'Fast-moving offers, notices and time-sensitive posts.',
+    description: 'Scan quickly, act quickly. This is the shelf for anything that moves — with the essentials on top.',
+    filterLabel: 'Filter category',
+    secondaryNote: 'Prioritize urgency, short summaries and direct browsing.',
     chips: ['Fast scan', 'Offers', 'Action cues'],
   },
   sbm: {
-    eyebrow: 'Saved resources',
-    headline: 'Social bookmarks arranged like curated collections.',
-    description: 'Bookmark pages should feel like shelves of useful resources, tools, references, and collections.',
+    eyebrow: 'Saved shelf',
+    headline: 'A quiet shelf of resources worth keeping.',
+    description: 'Bookmarks arranged like a real library — tools, references and collections we found useful and thought you might too.',
     filterLabel: 'Filter collection',
     secondaryNote: 'Curated resources need grouping and calm metadata.',
     chips: ['Collections', 'Resources', 'Reference flow'],
   },
   profile: {
-    eyebrow: 'People and profiles',
-    headline: 'Profiles with identity, trust, and reputation cues.',
-    description: 'Profile pages should make people, brands, and entities feel discoverable rather than buried in a generic feed.',
-    filterLabel: 'Filter profile category',
-    secondaryNote: 'Make identity and credibility visible before the grid begins.',
-    chips: ['Identity first', 'Trust cues', 'Creator/business cards'],
+    eyebrow: 'Directory of people',
+    headline: 'Independent operators, studios and creators.',
+    description: 'Profile pages built around identity and credibility — the humans and small teams behind the places and stories on the site.',
+    filterLabel: 'Filter category',
+    secondaryNote: 'Identity and credibility should read before the grid begins.',
+    chips: ['Identity first', 'Trust cues', 'Studio-style cards'],
   },
   pdf: {
     eyebrow: 'Document library',
-    headline: 'PDFs and documents presented as a useful library.',
-    description: 'PDF pages should feel like downloadable guides, reports, files, and reference material instead of normal articles.',
+    headline: 'Downloadable guides, reports and reference material.',
+    description: 'A quiet stack of documents, indexed and previewable. Read in the panel or take a copy for the road.',
     filterLabel: 'Filter document type',
-    secondaryNote: 'Document surfaces need archive cues, file context, and clear browsing.',
+    secondaryNote: 'Documents need archive cues, file context and clear browsing.',
     chips: ['Documents', 'Guides', 'Archive ready'],
   },
   listing: {
-    eyebrow: 'Business directory',
-    headline: 'Business listings built for discovery and comparison.',
-    description: 'Listing pages should behave like a directory with trust cues, metadata, and a practical search rhythm.',
-    filterLabel: 'Filter business category',
-    secondaryNote: 'Prioritize comparison, location, and direct action paths.',
-    chips: ['Directory', 'Compare', 'Business discovery'],
+    eyebrow: 'Local Directory',
+    headline: 'Independent places worth knowing, in one calm directory.',
+    description:
+      'A clean, no-noise directory of studios, workshops and small businesses — with the contact details, hours and location you actually need on the card.',
+    filterLabel: 'Filter category',
+    secondaryNote: 'Prioritize comparison, location and direct action paths.',
+    chips: ['Directory', 'Compare', 'Studio discovery'],
   },
   image: {
-    eyebrow: 'Visual gallery',
-    headline: 'Image posts with a gallery-first browsing experience.',
-    description: 'Image pages should lead with visual impact, stronger cards, and a portfolio-like rhythm.',
+    eyebrow: 'Visual feed',
+    headline: 'A gallery-first browsing rhythm.',
+    description: 'Frames and photo essays laid out at the pace they were shot. Longer form pieces linger; quicker ones move.',
     filterLabel: 'Filter visual category',
     secondaryNote: 'Let images carry the page before long text does.',
     chips: ['Gallery', 'Visual-first', 'Portfolio mood'],
